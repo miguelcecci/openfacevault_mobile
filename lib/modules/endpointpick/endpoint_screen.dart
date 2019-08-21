@@ -37,6 +37,7 @@ class _EndpointScreenState extends State<EndpointScreen> {
                   controller: myController,
                 ),
               ),
+              Text('Instructions to run an endpoint')
             ],
           )
       ),

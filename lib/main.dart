@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'modules/endpointpick/endpoint_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'modules/main/main_screen.dart';
+import 'modules/login/login_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/main' : (context) => MainScreen(),
         '/endpoint' : (context) => EndpointScreen(),
+        '/login' : (context) => LoginScreen()
       },
       home: MyHomePage(),
     );
@@ -32,16 +34,18 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   String endpoint = '';
+  String token = '';
 
   @override
   void initState(){
-    _loadEndpointAddress();
+    _loadEndpointAndToken();
   }
 
-  _loadEndpointAddress() async {
+  _loadEndpointAndToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       endpoint = (prefs.getString('endpoint') ?? '');
+      token = (prefs.getString('token') ?? '');
     });
   }
 
@@ -49,6 +53,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     if(endpoint == ''){
       return EndpointScreen();
+    }
+    if(token == ''){
+      return LoginScreen();
     }
     return MainScreen();
   }
