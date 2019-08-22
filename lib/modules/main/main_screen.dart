@@ -9,6 +9,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
 
   String endpoint = '';
+  String token = '';
 
   @override
   void initState(){
@@ -19,6 +20,7 @@ class _MainScreenState extends State<MainScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       endpoint = (prefs.getString('endpoint') ?? '');
+      token = (prefs.getString('token') ?? '');
     });
   }
 
@@ -29,7 +31,8 @@ class _MainScreenState extends State<MainScreen> {
       child: Scaffold(
         body: Center(
           child: Text(
-            "Main Screen. Your endpoint is: "+endpoint
+            "Main Screen. Your endpoint is: "+endpoint+
+              "Your token is: "+token
           ),
         ),
       ),

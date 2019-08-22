@@ -8,9 +8,7 @@ class UserService {
 
   Future<String> doLogin(String username, String password, String endpoint) async {
     Map<String, dynamic> body = {'username': username, 'password': password};
-
-    final response =
-    await client.post(endpoint, body: body);
+    final response = await client.post('http://'+endpoint+'/signin', body: body);
 
     if (response.statusCode == 200) {
       return json.decode(response.body)['token'];

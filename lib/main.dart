@@ -51,10 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    if(endpoint == ''){
-      return EndpointScreen();
-    }
-    if(token == ''){
+    if(token == '' || endpoint == ''){
       return LoginScreen();
     }
     return MainScreen();

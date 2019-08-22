@@ -44,7 +44,7 @@ class _EndpointScreenState extends State<EndpointScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           _setEndpointAddress(myController.text).then(
-              Navigator.pushNamed(context, '/main')
+              Navigator.pushNamed(context, '/login')
           );
         },
         tooltip: 'Increment',

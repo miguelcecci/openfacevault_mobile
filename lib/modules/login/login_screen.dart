@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:openfacevault_mobile/repositories/user_repository.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -8,14 +9,19 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
+  final _userRepository = UserRepository();
+
   final userNameField = TextEditingController();
+  final endpointField = TextEditingController();
   final passwordField = TextEditingController();
-  var warningText = ' ';
+  var loading = false;
+  var warningText = '';
 
   @override
   void dispose() {
     userNameField.dispose();
     passwordField.dispose();
+    endpointField.dispose();
     super.dispose();
   }
 
@@ -46,15 +52,39 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
+              Container(
+                padding: EdgeInsets.all(50),
+                child: TextField(
+                  controller: endpointField,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'Endpoint',
+                  ),
+                ),
+              ),
               Center(
                 child: Text(warningText),
+              ),
+              Visibility(
+                visible: this.loading,
+                child: CircularProgressIndicator(),
               )
             ],
           )
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-
+        onPressed: () async {
+          setState(() {
+            this.loading = true;
+          });
+          if(await this._userRepository.doLogin(userNameField.text, passwordField.text, endpointField.text)){
+            Navigator.pushNamed(context, '/main');
+          }else{
+            setState(() {
+              this.warningText = 'Login error';
+              this.loading = true;
+            });
+          }
         },
         tooltip: 'Increment',
         child: Icon(Icons.arrow_forward_ios),
