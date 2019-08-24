@@ -5,3 +5,8 @@ import 'package:meta/meta.dart';
 abstract class FacesEvent extends Equatable {
   FacesEvent([List props = const <dynamic>[]]) : super(props);
 }
+
+class FacesFetch extends FacesEvent{
+  @override
+  String toString() => 'CalendarFetch';
+}

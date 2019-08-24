@@ -1,5 +1,9 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:openfacevault_mobile/modules/faces/bloc/bloc.dart';
 import 'package:openfacevault_mobile/modules/faces/bloc/faces_bloc.dart';
+import 'package:openfacevault_mobile/modules/faces/bloc/faces_event.dart';
 
 class FacesScreen extends StatefulWidget {
   @override
@@ -7,18 +11,34 @@ class FacesScreen extends StatefulWidget {
 }
 
 class _FacesScreenState extends State<FacesScreen> {
+
+  final _facesBloc = FacesBloc();
+
+  @override
+  void initState(){
+    super.initState();
+    _facesBloc.dispatch(FacesFetch());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('faces'),
+      body: BlocBuilder(bloc: _facesBloc, builder: (context, FacesState state){
+        if(state is InitialFacesState){
+          return Center(child: CircularProgressIndicator(),);
+        }
+
+        if(state is FacesLoaded){
+          return Center(child: Text('loaded'),);
+        }
+
+        if(state is FacesError){
+          return Center(child: Text('Error'),);
+        }
+
+        return Center(child: Text('default'),);
+      },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-        },
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      )
     );
   }
 }
