@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:openfacevault_mobile/models/person.dart';
 
 part 'response.g.dart';
 
@@ -7,13 +8,16 @@ class Response {
   @JsonKey(name: 'message')
   String message;
 
-  @JsonKey(name: 'token')
+  @JsonKey(name: 'access_token')
   String token;
 
   @JsonKey(name: 'status')
   bool status;
 
-  Response(this.message, this.token, this.status);
+  @JsonKey(name: 'persons')
+  List<Person> persons;
+
+  Response(this.message, this.token, this.status, this.persons);
 
   factory Response.fromJson(Map<String, dynamic> json) =>
       _$ResponseFromJson(json);

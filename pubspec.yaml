@@ -25,6 +25,7 @@ dependencies:
   rxdart:
   http:
   json_annotation:
+  equatable:
 
   shared_preferences:
 

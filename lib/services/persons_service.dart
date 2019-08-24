@@ -1,31 +1,26 @@
 import 'dart:async';
 import 'dart:convert';
-
+import 'package:openfacevault_mobile/models/response.dart';
 import 'package:http/http.dart' show Client;
 
-class UserService {
+class PersonsService {
   Client client = Client();
 
-  Future<String> doLogin(String username, String password, String endpoint) async {
+  Future<Response> getPersons(String token, String endpoint) async {
 
     Map<String, String> headers = {
       'Content-type' : 'application/json',
       'Accept': 'application/json',
+      'Authorization': 'Bearer '+token
     };
 
-    Map<String, String> body = {
-      'username': 'admin',
-      'password': 'admin'
-    };
-
-    final response = await client.post(
+    final response = await client.get(
         'http://35.239.205.136/signin',
-        headers: headers,
-        body: jsonEncode(body)
+        headers: headers
     );
 
     if (response.statusCode == 200) {
-      return json.decode(response.body)['access_token'];
+      return Response.fromJson(json.decode(response.body));
     } else {
       throw Exception('Erro');
     }

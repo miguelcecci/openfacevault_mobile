@@ -35,6 +35,13 @@ class _MainScreenState extends State<MainScreen> {
               "Your token is: "+token
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.pushNamed(context, '/faces');
+          },
+          tooltip: 'Increment',
+          child: Icon(Icons.add),
+        )
       ),
     );
   }

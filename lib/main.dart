@@ -3,6 +3,7 @@ import 'modules/endpointpick/endpoint_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'modules/main/main_screen.dart';
 import 'modules/login/login_screen.dart';
+import 'modules/faces/faces_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/main' : (context) => MainScreen(),
         '/endpoint' : (context) => EndpointScreen(),
-        '/login' : (context) => LoginScreen()
+        '/login' : (context) => LoginScreen(),
+        '/faces' : (context) => FacesScreen()
       },
       home: MyHomePage(),
     );
