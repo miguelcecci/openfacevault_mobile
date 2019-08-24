@@ -7,11 +7,22 @@ class UserService {
   Client client = Client();
 
   Future<String> doLogin(String username, String password, String endpoint) async {
-    Map<String, dynamic> body = {'username': username, 'password': password};
-    Map<String, String> headers = new Map<String, String>();
-    headers["Accept"] = "application/json";
-    final response = await client.post('http://35.239.205.136/signin', headers: headers, body: body);
 
+    Map<String, String> headers = {
+      'Content-type' : 'application/json',
+      'Accept': 'application/json',
+    };
+
+    Map<String, String> body = {
+      'username': username,
+      'password': password
+    };
+
+    final response = await client.post(
+        'http://35.239.205.136/signin',
+        headers: headers,
+        body: jsonEncode(body)
+    );
 
     if (response.statusCode == 200) {
       return json.decode(response.body)['token'];
