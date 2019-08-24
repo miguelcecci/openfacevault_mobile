@@ -12,12 +12,12 @@ class Response {
   String token;
 
   @JsonKey(name: 'status')
-  bool status;
+  int status;
 
   @JsonKey(name: 'persons')
   List<Person> persons;
 
-  Response(this.message, this.token, this.status, this.persons);
+  Response( this.persons, this.message, this.token, this.status);
 
   factory Response.fromJson(Map<String, dynamic> json) =>
       _$ResponseFromJson(json);

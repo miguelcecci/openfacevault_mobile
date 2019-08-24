@@ -8,5 +8,5 @@ abstract class FacesEvent extends Equatable {
 
 class FacesFetch extends FacesEvent{
   @override
-  String toString() => 'CalendarFetch';
+  String toString() => 'FacesFetch';
 }

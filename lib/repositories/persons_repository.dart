@@ -10,8 +10,8 @@ class PersonsRepository {
     final endpoint = (_prefs.getString('endpoint') ?? '');
     final token = (_prefs.getString('token') ?? '');
 
-    final persons = await _personsService.getPersons(token, endpoint);
+    final response = await _personsService.getPersons(token, endpoint);
 
-    return persons;
+    return response.persons;
   }
 }

@@ -14,9 +14,9 @@ class Person {
   String photo;
 
   @JsonKey(name: 'created_date')
-  String created_date;
+  String createdDate;
 
-  Person(this.name, this.id, this.photo, this.created_date);
+  Person(this.name, this.id, this.photo, this.createdDate);
 
   factory Person.fromJson(Map<String, dynamic> json) =>
       _$PersonFromJson(json);

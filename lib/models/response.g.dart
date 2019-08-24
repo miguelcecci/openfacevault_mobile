@@ -8,9 +8,6 @@ part of 'response.dart';
 
 Response _$ResponseFromJson(Map json) {
   return Response(
-    json['message'] as String,
-    json['access_token'] as String,
-    json['status'] as bool,
     (json['persons'] as List)
         ?.map((e) => e == null
             ? null
@@ -18,6 +15,9 @@ Response _$ResponseFromJson(Map json) {
                 (k, e) => MapEntry(k as String, e),
               )))
         ?.toList(),
+    json['message'] as String,
+    json['access_token'] as String,
+    json['status'] as int,
   );
 }
 

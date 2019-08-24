@@ -19,5 +19,5 @@ Map<String, dynamic> _$PersonToJson(Person instance) => <String, dynamic>{
       'name': instance.name,
       'id': instance.id,
       'photo': instance.photo,
-      'created_date': instance.created_date,
+      'created_date': instance.createdDate,
     };

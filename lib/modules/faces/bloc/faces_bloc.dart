@@ -3,10 +3,12 @@ import 'package:bloc/bloc.dart';
 import './bloc.dart';
 
 import 'package:openfacevault_mobile/repositories/persons_repository.dart';
+import 'package:openfacevault_mobile/repositories/endpoint_repository.dart';
 
 class FacesBloc extends Bloc<FacesEvent, FacesState> {
 
   final _repository = PersonsRepository();
+  final _endpoint = EndpointRepository();
 
   @override
   FacesState get initialState => InitialFacesState();
@@ -18,7 +20,8 @@ class FacesBloc extends Bloc<FacesEvent, FacesState> {
     if(event is FacesFetch){
       try {
         final persons = await _repository.getPersons();
-        yield FacesLoaded(persons: persons);
+        final endpoint = await _endpoint.getRepository();
+        yield FacesLoaded(persons: persons, endpoint: endpoint);
       } catch(e) {
         yield FacesError(e);
       }

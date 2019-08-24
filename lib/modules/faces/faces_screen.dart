@@ -29,7 +29,18 @@ class _FacesScreenState extends State<FacesScreen> {
         }
 
         if(state is FacesLoaded){
-          return Center(child: Text('loaded'),);
+          final items = state.persons;
+          return ListView.builder(
+            itemCount: items.length,
+            itemBuilder: (context, index){
+              return ListTile(
+                title: Text(items[index].name),
+                leading: CircleAvatar(
+                  backgroundImage: NetworkImage('http://35.239.205.136/storage/'+items[index].photo),
+                ),
+              );
+            },
+          );
         }
 
         if(state is FacesError){

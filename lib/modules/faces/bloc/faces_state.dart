@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/semantics.dart';
 import 'package:meta/meta.dart';
 import 'package:openfacevault_mobile/models/person.dart';
 
@@ -12,8 +11,9 @@ class InitialFacesState extends FacesState {}
 
 class FacesLoaded extends FacesState {
   final List<Person> persons;
+  final String endpoint;
 
-  FacesLoaded({this.persons});
+  FacesLoaded({this.persons, this.endpoint});
 
   @override
   String toString() => 'FacesLoaded';

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:openfacevault_mobile/repositories/user_repository.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -16,6 +15,12 @@ class _LoginScreenState extends State<LoginScreen> {
   final passwordField = TextEditingController();
   var loading = false;
   var warningText = '';
+
+  @override
+  void initState() {
+    endpointField.text = '35.239.205.136';
+    super.initState();
+  }
 
   @override
   void dispose() {
