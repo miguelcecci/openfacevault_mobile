@@ -36,7 +36,7 @@ class _FacesScreenState extends State<FacesScreen> {
               return ListTile(
                 title: Text(items[index].name),
                 leading: CircleAvatar(
-                  backgroundImage: NetworkImage('http://35.239.205.136/storage/'+items[index].photo),
+                  backgroundImage: NetworkImage('http://+'+state.endpoint+'/storage/'+items[index].photo),
                 ),
               );
             },
