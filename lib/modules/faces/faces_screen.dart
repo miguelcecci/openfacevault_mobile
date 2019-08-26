@@ -35,9 +35,9 @@ class _FacesScreenState extends State<FacesScreen> {
             itemBuilder: (context, index){
               return ListTile(
                 title: Text(items[index].name),
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage('http://+'+state.endpoint+'/storage/'+items[index].photo),
-                ),
+                // leading: CircleAvatar(
+                //   backgroundImage: NetworkImage('http://+'+state.endpoint+'/storage/'+items[index].photo),
+                // ),
               );
             },
           );
@@ -50,6 +50,12 @@ class _FacesScreenState extends State<FacesScreen> {
         return Center(child: Text('default'),);
       },
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.pushNamed(context, '/newface');
+          },
+          child: Icon(Icons.add),
+        )
     );
   }
 }

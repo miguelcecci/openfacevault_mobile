@@ -26,6 +26,7 @@ dependencies:
   http:
   json_annotation:
   equatable:
+  image_picker:
 
   shared_preferences:
 
