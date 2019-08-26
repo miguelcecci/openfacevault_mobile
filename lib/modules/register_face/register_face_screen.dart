@@ -46,7 +46,7 @@ class _RegisterFaceScreenState extends State<RegisterFaceScreen> {
                         )
                       ])),
             Container(
-              padding: EdgeInsets.all(50),
+              padding: EdgeInsets.symmetric(horizontal: 60),
               child: TextField()
             ),
             Row(
